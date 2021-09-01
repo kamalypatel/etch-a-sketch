@@ -85,24 +85,26 @@
             });
             const btn = document.querySelector('#btn');
             btn.addEventListener('click', () => {
-            let sideSquares = prompt('What is the new number of squares on each side of the grid? (Max: 100 squares)');
-            let blockSideLength = (832 - (sideSquares * 2)) / sideSquares;
-            console.log(blockSideLength);
-            const container = document.querySelector('#container');
-            container.innerHTML = '';
-            const styleSheet = document.createElement('style');
-            styleSheet.type = "text/css";
-            styleSheet.innerHTML = ".blockTwo {" +
-                "display: inline-block;" +
-                "height: " + blockSideLength + "px;" +
-                "width: " + blockSideLength + "px;" +
-                "border: 1px solid black;" +
-                "background-color: white;" +
-            "}"
-            document.head.append(styleSheet);
-            let x = sideSquares;
-            let y = sideSquares;
-            refresh(x,y);
+                let sideSquares = prompt('What is the new number of squares on each side of the grid? (Less than 100 recommended)');
+                let blockSideLength = (832 - (sideSquares * 2)) / sideSquares;
+
+                const container = document.querySelector('#container');
+                container.innerHTML = '';
+                
+                const styleSheet = document.createElement('style');
+                styleSheet.type = "text/css";
+                styleSheet.innerHTML = ".blockTwo {" +
+                    "display: inline-block;" +
+                    "height: " + blockSideLength + "px;" +
+                    "width: " + blockSideLength + "px;" +
+                    "border: 1px solid black;" +
+                    "background-color: white;" +
+                "}"
+                document.head.append(styleSheet);
+
+                let x = sideSquares;
+                let y = sideSquares;
+                refresh(x,y);
             });
         </script>
     </body>
