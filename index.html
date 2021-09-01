@@ -1,34 +1,67 @@
 <!DOCTYPE html>
-<style>
+<head>
+    <style>
+        .container {
+            display: block;
+            width: 832px;
+            height: 832px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 0px;
+        }
+        .block {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            background-color: white;
+        } /*
+        .block:hover {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            background-color: green;
+        } */
+    </style>
+</head>
 
-    .container {
-        display: block;
-        width: 832px;
-        height: 832px;
-        line-height: 0px;
-    }
-    .block {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        border: 1px solid black;
-        background-color: white;
-    } /*
-    .block:hover {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        border: 1px solid black;
-        background-color: green;
-    } */
-</style>
 <html>
     <body>
+        <h1 style="text-align: center;">Etch-A-Sketch</h1>
+        <p style="text-align: center;"><button id=btn>Reset & Resize Grid</button></p>
+        <br></br>
         <div id="container" class="container">
             
         </div>
         <script>
-            for (let i = 0; i <= 15; i++) {
+            function refresh(x, y) {
+                for (let i = 1; i <= x; i++) {
+                const container = document.querySelector('#container');
+                const containerTwo = document.createElement('div');
+                containerTwo.textContent = "";
+                containerTwo.id = "rowOne";
+                container.appendChild(containerTwo);
+
+                for (let j = 1; j <= y; j++) {
+                    const containerTwoTwo = document.querySelector('#rowOne');
+                    const content = document.createElement('div');
+                    content.classList.add('blockTwo');
+                    content.textContent = "";
+                    containerTwoTwo.appendChild(content);
+                }
+            }
+
+            let changeColor = document.getElementsByClassName('blockTwo');
+                Array.from(changeColor).forEach(function(v) {
+                    v.addEventListener('mouseenter', function () {
+                    this.style.backgroundColor = "green";
+                });
+            });
+
+            };
+
+            for (let i = 1; i <= 16; i++) {
                 const container = document.querySelector('#container');
                 const containerTwo = document.createElement('div');
                 containerTwo.textContent = "";
@@ -41,15 +74,36 @@
                     content.classList.add('block');
                     content.textContent = "";
                     containerTwoTwo.appendChild(content);
-                }
-            }
+                };
+            };
 
             let changeColor = document.getElementsByClassName('block');
-            Array.from(changeColor).forEach(function(v) {
-            v.addEventListener('mouseenter', function () {
-                this.style.backgroundColor = "green";
+                Array.from(changeColor).forEach(function(v) {
+                    v.addEventListener('mouseenter', function () {
+                    this.style.backgroundColor = "green";
+                });
             });
-        });
+            const btn = document.querySelector('#btn');
+            btn.addEventListener('click', () => {
+            let sideSquares = prompt('What is the new number of squares on each side of the grid? (Max: 100 squares)');
+            let blockSideLength = (832 - (sideSquares * 2)) / sideSquares;
+            console.log(blockSideLength);
+            const container = document.querySelector('#container');
+            container.innerHTML = '';
+            const styleSheet = document.createElement('style');
+            styleSheet.type = "text/css";
+            styleSheet.innerHTML = ".blockTwo {" +
+                "display: inline-block;" +
+                "height: " + blockSideLength + "px;" +
+                "width: " + blockSideLength + "px;" +
+                "border: 1px solid black;" +
+                "background-color: white;" +
+            "}"
+            document.head.append(styleSheet);
+            let x = sideSquares;
+            let y = sideSquares;
+            refresh(x,y);
+            });
         </script>
     </body>
 </html>
