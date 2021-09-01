@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<style>
+
+    .container {
+        display: block;
+        width: 832px;
+        height: 832px;
+        line-height: 0px;
+    }
+    .block {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        background-color: white;
+    }
+    .block:hover {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        background-color: green;
+    }
+</style>
+<html>
+    <body>
+        <div id="container" class="container">
+            
+        </div>
+        <script>
+
+            for (let i = 0; i <= 15; i++) {
+                const container = document.querySelector('#container');
+                const containerTwo = document.createElement('div');
+                containerTwo.textContent = "";
+                containerTwo.id = "rowOne";
+                container.appendChild(containerTwo);
+
+                for (let j = 1; j <= 16; j++) {
+                    const containerTwoTwo = document.querySelector('#rowOne');
+                    const content = document.createElement('div');
+                    content.classList.add('block');
+                    content.textContent = "";
+                    containerTwoTwo.appendChild(content);
+                }
+            }
+        </script>
+    </body>
+</html>
